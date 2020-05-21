@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Add Abscence</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+
+<body>
+	<div class="container my-5">
+		<h3>Add Abscence</h3>
+		<div class="card">
+			<div class="card-body">
+				<div class="col-md-10">
+					<form action="#" th:action="@{/abscences/add}"
+						th:object="${abscence}" method="post">
+						<div class="row">
+
+							<div class="form-group col-md-8">
+								<label for="classse">Etudiant :</label> <select
+									class="form-control" th:field="*{etudiant}" id="etudiant"
+									onchange="getmatieres()">
+
+									<option th:each="e : ${etudiants}" th:value="${e.id}"
+										th:text="${e.nom}"></option>
+								</select>
+							</div>
+							<div class="form-group col-md-8">
+								<label for="classse">Matiere :</label> <select
+									class="form-control" th:field="*{matiere}" id="matiere">
+
+									<option th:each="m : ${matieres}" th:value="${m.id}"
+										th:text="${m.label}"></option>
+								</select>
+							</div>
+
+
+
+
+							<div class="form-group col-md-8">
+								<label for="date_naissance" class="col-form-label">Date
+									:</label> <input type="date" class="form-control input-sm"
+									th:field="*{date}" /> <span
+									th:if="${#fields.hasErrors('date')}" th:errors="*{date}"
+									class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-8">
+								<label for="classse">Valeur :</label> <select
+									class="form-control" th:field="*{valeur}" id="valeur">
+
+									<option th:each="a : ${abslist}" th:value="${a}" th:text="${a}"></option>
+								</select>
+							</div>
+
+							<div class="col-md-8">
+								<input type="submit" class="btn btn-primary" value="Add Absence">
+							</div>
+
+							<div class="form-group col-md-8"></div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	function getmatieres() {
+		var etudiant = $('#etudiant').val();
+		console.log(etudiant);
+
+		$
+				.getJSON(
+						"http://localhost:9994/etudiants/matieres",
+						{
+							ide : etudiant,
+							ajax : 'true'
+						},
+						function(data) {
+							var html = '<option value=""></option>';
+							var len = data.length;
+							for (var i = 0; i < len; i++) {
+								html += '<option value="' + data[i].id + '">'
+									+data[i].label	+ '</option>';
+							}
+							html += '</option>';
+							$('#matiere').html(html);
+						});
+
+	}
+</script>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Abscences</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+
+<body>
+
+	<div th:insert="nav :: nav"></div>
+
+
+	<div class="container my-2">
+		<div class="card">
+
+			</form>
+			<div class="card-body">
+				<div th:switch="${abscences}" class="container my-5">
+<div class="row">
+
+					<div class="col-md-8">
+						<h2 th:case="null">No Abscences yet!</h2>
+						<div th:case="*">
+							<div class="form-group col-md-4">
+								<label for="label" class="col-form-label text-success">Nom
+									et Prenom</label>
+								<p class="col-form-label" th:text="${etudiant}"></p>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="label" class="col-form-label text-success">Matiere
+									: </label>
+								<p class="col-form-label" th:text="${matiere}"></p>
+							</div>
+						</div>
+
+						<div class="form-group col-md-4">
+							<label for="label" class="col-form-label text-success">Total
+								: </label>
+							<p class="col-form-label"
+								th:text="${totalabs}"
+								>Heures d'abscences</p>
+						</div>
+							<label for="label" class="col-form-label text-success">Elimine :
+								: </label>
+					 <div th:switch="${totalabs}>${matiere.nombre_heure}*3/10" class="container my-5">
+
+					<div class="col-md-10">
+					
+						<h2 th:case="false">No !</h2>
+						<div th:case="*" >
+						oui
+						</div>
+						</div>
+						</div>
+						
+					</div>
+					<div class="col-md-4">
+					<div>
+					<label for="label" class="col-form-label text-success">Min Abscence :
+								: </label>
+					<p class="col-form-label"
+								th:text="${minabs}"
+								>Heures d'abscences</p>
+					</div>
+					<div>
+					<label for="label" class="col-form-label text-success">Max Abscence :
+								: </label>
+					<p class="col-form-label"
+								th:text="${maxabs}"
+								>Heures d'abscences</p>
+					</div>
+					</div>
+	</div>				
+					
+					
+					<table class="table table-striped table-responsive-md">
+						<thead>
+							<tr>
+
+								<th>Matricule</th>
+								<th>Label</th>
+								<th>Valeur</th>
+								<th>Date</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="abscence : ${abscences}">
+
+								<td th:text="${abscence.id}"></td>
+								<td th:text="${abscence.matiere}"></td>
+								<td th:text="${abscence.valeur}"></td>
+								<td th:text="${abscence.date}"></td>
+
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+</body>
+
+</html>

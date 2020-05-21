@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Mon Site Web</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+	<header class="tete">
+		<h1 class="titre_site">Tek-Up</h1>
+	</header>
+	
+<form action="#" th:action="@{/adduser}" th:object="${classe}" method="post">
+
+
+<label for="label">	label</label>
+
+<input type="text" th:field="*{label}" id="label" placeholder="Label">
+
+<span th:if="${#fields.hasErrors('label')}" th:errors="*{label}"></span>
+
+<label for="nom_compte">Nom_Compte</label>
+<input type="text" th:field="*{nom_compte}" id="nom_compte" placeholder="Nom_Compte">
+<span th:if="${#fields.hasErrors('nom_compte')}" th:errors="*{nom_compte}"></span>
+<input type="submit" value="ajouter">
+</form>
+</body>
+</html>

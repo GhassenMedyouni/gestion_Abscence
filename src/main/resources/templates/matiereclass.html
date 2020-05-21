@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Absences</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+
+<body>
+
+	<div th:insert="nav :: nav"></div>
+
+
+	<div class="container my-2">
+		<div class="card">
+
+			</form>
+			<div class="card-body">
+				<a th:href=" @{/classes/add/{idclasse}(idclasse=${classe.id})}"
+					class="btn btn-primary">ajouter matiere </a>
+				<div th:switch="${matieres}" class="container my-5">
+
+					<div class="col-md-10">
+						<h2 th:case="null">NO matiere yet !</h2>
+						<div th:case="*">
+							<div class="form-group col-md-8">
+								<label for="label" class="col-form-label">Classe : </label>
+								<p class="col-form-label" th:text="${classe}"></p>
+							</div>
+
+							<table class="table table-striped table-responsive-md">
+								<thead>
+									<tr>
+
+										<th>Matricule</th>
+										<th>Nom</th>
+                                        <th>charge Horaire</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="matiere : ${matieres}">
+
+										<td th:text="${matiere.id}"></td>
+
+
+										<td th:text="${matiere.label}"></td>
+
+										<td th:text="${matiere.nombre_heure}"></td>
+
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

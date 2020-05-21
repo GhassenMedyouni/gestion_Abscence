@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+
+<table class="table table-striped table-responsive-md">
+						<thead>
+							<tr>
+
+								<th  th:each="m : ${classeabs.matieres}" th:text="${m.label}"></th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="e : ${classeabs.etudiants}">
+
+								<td th:text="${e.nom}"></td>
+								<th  th:each="m : ${e.matiere}" th:text="${m.valeurAbs}">
+
+
+							</tr>
+						</tbody>
+					</table>
+</body>
+</html>

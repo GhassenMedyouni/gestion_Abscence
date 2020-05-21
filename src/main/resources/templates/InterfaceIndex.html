@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Abscences Interfaces </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+
+<body>
+    <div class="container my-2">
+        <div class="card">
+            <div class="card-body">
+            
+            <form action="#" th:action="@{/showabs/}"   
+				th:object=${msg} method="post">
+				<div class="row">
+
+
+					<div class="form-group col-md-8">
+						<label for="classse">Matiere :</label> <select
+							class="form-control" th:field="*{matiere}" id="matiere">
+
+							<option th:each="m : ${matieres}" th:value="${m.id}"
+								th:text="${m.label}"></option>
+						</select>
+					</div>
+
+					<div class="form-group col-md-8">
+						<label for="classse">etudiant :</label> <select
+							class="form-control" th:field="*{etudiant}" id="etudiant">
+
+							<option th:each="e : ${etudiants}" th:value="${e.id}"
+								th:text="${e.nom}"></option>
+						</select>
+					</div>
+<button type="submit" class="form-control col-md-5 btn btn-primary">search</button>
+
+				</div>
+				</form>
+                <div th:switch="${interfaces}" class="container my-5">
+                    
+                   
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
